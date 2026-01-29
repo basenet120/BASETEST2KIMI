@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 
 // ============================================
 // BASE NYC WEBSITE - With Webflow CMS Integration
@@ -1421,7 +1422,12 @@ export default function App() {
 
   const HomePage = () => (
     <>
-      <section style={{ position: 'relative', minHeight: isMobile ? '70vh' : '80vh', display: 'flex', alignItems: 'center' }}>
+      <motion.section 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        style={{ position: 'relative', minHeight: isMobile ? '70vh' : '80vh', display: 'flex', alignItems: 'center' }}
+      >
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: colors.midGray, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
           <video autoPlay muted loop playsInline style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', minWidth: '100%', minHeight: '100%', objectFit: 'cover' }}>
             <source src="/home.mp4" type="video/mp4" />
@@ -1442,11 +1448,17 @@ export default function App() {
             <button className="btn-animated" onClick={() => goTo('studios')} style={{ backgroundColor: 'transparent', color: colors.cream, border: '1px solid #2A2A2A', padding: '16px 32px', fontSize: '13px', fontWeight: '700', letterSpacing: '1px', cursor: 'pointer', transition: 'border-color 0.3s ease, background-color 0.3s ease' }} onMouseEnter={(e) => { e.target.style.borderColor = colors.red; e.target.style.backgroundColor = 'rgba(237, 28, 36, 0.1)'; }} onMouseLeave={(e) => { e.target.style.borderColor = '#2A2A2A'; e.target.style.backgroundColor = 'transparent'; }}>SEE THE SPACE</button>
           </div>
         </div>
-      </section>
+      </motion.section>
       <ClientLogoMarquee />
       
       {/* WHO WE SERVE - Industry Pathways */}
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 48px' }}>
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        style={{ padding: isMobile ? '60px 20px' : '80px 48px' }}
+      >
         <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>WHO WE SERVE</p>
         <h2 style={{ fontSize: isMobile ? '28px' : '36px', fontWeight: '700', marginBottom: isMobile ? '32px' : '48px' }}>Built for how you work.</h2>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: '2px' }}>
@@ -1455,8 +1467,12 @@ export default function App() {
             { title: 'FASHION BRANDS', desc: 'Lookbooks, campaigns, and e-commerce.', page: 'fashion' },
             { title: 'CREATIVES', desc: 'Access agency-level infrastructure.', page: 'creatives' }
           ].map((p, i) => (
-            <div 
+            <motion.div 
               key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               className="industry-card"
               onClick={() => goTo(p.page)} 
               style={{ 
@@ -1467,13 +1483,19 @@ export default function App() {
               <h3 className="card-title" style={{ fontSize: isMobile ? '18px' : '20px', fontWeight: '700', marginBottom: '16px', color: colors.cream }}>{p.title}</h3>
               <p className="card-desc" style={{ fontSize: '14px', color: colors.gray, marginBottom: '24px' }}>{p.desc}</p>
               <p className="card-cta" style={{ fontSize: '13px', fontWeight: '700', color: colors.red }}>Learn more →</p>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
       
       {/* WHAT WE OFFER - Three Pillars */}
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}>
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        style={{ padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}
+      >
         <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>WHAT WE OFFER</p>
         <h2 style={{ fontSize: isMobile ? '28px' : '36px', fontWeight: '700', marginBottom: isMobile ? '32px' : '48px' }}>One location. Complete capability.</h2>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '2px' }}>
@@ -1481,8 +1503,12 @@ export default function App() {
             { title: 'BASE PRODUCTION', sub: 'Services Infrastructure', desc: 'Pre-production through post.', cta: 'See services →', page: 'production' },
             { title: 'BASE CONNECT', sub: 'Network Infrastructure', desc: 'Coworking and vetted talent.', cta: 'Join →', page: 'connect' }
           ].map((p, i) => (
-            <div 
+            <motion.div 
               key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               className="industry-card"
               onClick={() => goTo(p.page)} 
               style={{ 
@@ -1495,13 +1521,19 @@ export default function App() {
               <h3 className="card-title" style={{ fontSize: isMobile ? '20px' : '24px', fontWeight: '700', marginBottom: '16px', color: colors.cream }}>{p.title}</h3>
               <p className="card-desc" style={{ fontSize: '14px', color: colors.gray, marginBottom: '24px' }}>{p.desc}</p>
               <p className="card-cta" style={{ fontSize: '13px', fontWeight: '700', color: colors.red }}>{p.cta}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
       
       {/* THE DAILIES - Latest Blog Posts from CMS */}
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 48px' }}>
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        style={{ padding: isMobile ? '60px 20px' : '80px 48px' }}
+      >
         <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', marginBottom: isMobile ? '32px' : '48px', gap: '16px' }}>
           <div>
             <p className="animate-fade-in-up" style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>THE DAILIES</p>
@@ -1511,11 +1543,15 @@ export default function App() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)', gap: '24px' }}>
           {blogPosts.slice(0, 3).map((post, i) => (
-            <article 
-              key={post.id} 
-              className="hover-lift animate-fade-in-up img-hover-zoom"
+            <motion.article 
+              key={post.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="hover-lift img-hover-zoom"
               onClick={() => goToArticle(post)} 
-              style={{ cursor: 'pointer', animationDelay: `${0.1 + i * 0.1}s` }}
+              style={{ cursor: 'pointer' }}
             >
               <div style={{ backgroundColor: colors.midGray, height: isMobile ? '180px' : '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4A4A4A', marginBottom: '20px', overflow: 'hidden', borderRadius: '2px' }}>
                 {post.thumbnail ? (
@@ -1527,13 +1563,20 @@ export default function App() {
               <p style={{ fontSize: '11px', letterSpacing: '2px', color: colors.red, marginBottom: '12px' }}>{post.category}</p>
               <h3 style={{ fontSize: isMobile ? '18px' : '20px', fontWeight: '700', marginBottom: '12px', transition: 'color 0.3s ease' }}>{post.title}</h3>
               <p style={{ fontSize: '12px', color: '#6A6A6A' }}>{post.date}</p>
-            </article>
+            </motion.article>
           ))}
         </div>
-      </section>
+      </motion.section>
       
       {/* CTA Section */}
-      <section className="animate-fade-in" style={{ padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="animate-fade-in" 
+        style={{ padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}
+      >
         <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: '24px' }}>
           <div>
             <h2 style={{ fontSize: isMobile ? '28px' : '36px', fontWeight: '700', marginBottom: '8px', color: '#fff' }}>Ready to see the space?</h2>
@@ -1541,7 +1584,7 @@ export default function App() {
           </div>
           <button className="btn-animated" onClick={() => goTo('contact')} style={{ backgroundColor: colors.bg, color: colors.cream, border: 'none', padding: '20px 40px', fontSize: '13px', fontWeight: '700', cursor: 'pointer', width: isMobile ? '100%' : 'auto', transition: 'transform 0.2s ease, box-shadow 0.2s ease' }}>SCHEDULE A VISIT</button>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 
