@@ -1,0 +1,70 @@
+package.json
+  8f1df812079ac1ae 8
+  c88ca4043be54aa9 9
+src/BaseNYCApp.jsx
+  7bba2aa4ba1b5da3 635,1121-1122,1376,1434,1600,1625,1670,1682,1700,1745,1776,1793,1805,1836,1848,1865,1894,1911,1934,2134-2135,2174,2559,2692,2715
+  86703d229495f4a4 3,1429
+src/GlobeAnimation.jsx
+  86703d229495f4a4 4-6,11-12,14,21-22,35-49,52-58,60-61,63-64,66-70,76-77,80,83-84,91,95-96,101-102,106,111-113,115-116,122-123,125-127,131-132,134-135,141,144,169-170,207,219,222-223,237,239-240,244-245,247-250,252-253,256-260,266,271-272,274,278,280-281,283-284,298,305,317-320
+  c88ca4043be54aa9 3
+  7bba2aa4ba1b5da3 265
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.40",
+  "base_commit_sha": "cd5f9724a9b6654e33d1e38128a11b3fd664a08f",
+  "prompts": {
+    "7bba2aa4ba1b5da3": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "634ad6ed-96b0-4e93-97ac-33b7fd1525b3",
+        "model": "composer-1"
+      },
+      "human_author": "jollyburnz <j@cksonl.in>",
+      "messages": [],
+      "total_additions": 30,
+      "total_deletions": 26,
+      "accepted_lines": 27,
+      "overriden_lines": 0
+    },
+    "86703d229495f4a4": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "66c87cf9-3be5-4917-b945-7defcaee82c7",
+        "model": "composer-1"
+      },
+      "human_author": "jollyburnz <j@cksonl.in>",
+      "messages": [],
+      "total_additions": 1343,
+      "total_deletions": 664,
+      "accepted_lines": 766,
+      "overriden_lines": 122
+    },
+    "8f1df812079ac1ae": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "ed0c8d2d-d70e-494a-ba79-675ba16905ec",
+        "model": "composer-1"
+      },
+      "human_author": "jollyburnz <j@cksonl.in>",
+      "messages": [],
+      "total_additions": 638,
+      "total_deletions": 116,
+      "accepted_lines": 4,
+      "overriden_lines": 0
+    },
+    "c88ca4043be54aa9": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a3a4bd31-b160-41f4-84b7-a19a0bb19e8a",
+        "model": "composer-1"
+      },
+      "human_author": "jollyburnz <j@cksonl.in>",
+      "messages": [],
+      "total_additions": 2,
+      "total_deletions": 1,
+      "accepted_lines": 2,
+      "overriden_lines": 0
+    }
+  }
+}
