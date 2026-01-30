@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import GlobeAnimation from './GlobeAnimation';
 
 // ============================================
 // BASE NYC WEBSITE - With Webflow CMS Integration
@@ -631,7 +632,7 @@ export default function App() {
     const crumbs = getBreadcrumbs(currentPage);
     if (crumbs.length === 0) return null;
     return (
-      <div style={{ padding: isMobile ? '16px 20px' : '16px 48px', borderBottom: '1px solid #1A1A1A', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+      <div style={{ position: 'relative', zIndex: 2, padding: isMobile ? '16px 20px' : '16px 48px', borderBottom: '1px solid #1A1A1A', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
         {crumbs.map((crumb, i) => (
           <span key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             {crumb.page ? (
@@ -1117,6 +1118,8 @@ export default function App() {
     
     return (
       <section style={{ 
+        position: 'relative',
+        zIndex: 2,
         borderTop: '1px solid #1A1A1A', 
         borderBottom: '1px solid #1A1A1A', 
         padding: isMobile ? '24px 20px' : '32px 48px', 
@@ -1124,7 +1127,8 @@ export default function App() {
         flexDirection: isMobile ? 'column' : 'row', 
         alignItems: isMobile ? 'flex-start' : 'center', 
         gap: isMobile ? '16px' : '32px',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        background: 'rgba(0,0,0,1)'
       }}>
         <p style={{ 
           fontSize: '12px', 
@@ -1200,7 +1204,7 @@ export default function App() {
   };
 
   const HeroSection = ({ tag, title, subtitle, buttonText, buttonAction, secondaryButton, heroImage }) => (
-    <section style={{ position: 'relative', padding: heroImage ? '0' : (isMobile ? '60px 20px 40px' : '80px 48px 60px'), minHeight: heroImage ? (isMobile ? '400px' : '500px') : 'auto', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+    <section style={{ position: 'relative', zIndex: 2, background: 'rgba(0,0,0,1)', padding: heroImage ? '0' : (isMobile ? '60px 20px 40px' : '80px 48px 60px'), minHeight: heroImage ? (isMobile ? '400px' : '500px') : 'auto', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
       {heroImage && (
         <>
           <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: colors.midGray, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -1369,7 +1373,7 @@ export default function App() {
   );
 
   const SubNav = () => (
-    <div style={{ padding: isMobile ? '12px 20px' : '16px 48px', borderBottom: '1px solid #1A1A1A', display: 'flex', gap: isMobile ? '20px' : '32px', overflowX: 'auto' }}>
+    <div style={{ position: 'relative', zIndex: 2, padding: isMobile ? '12px 20px' : '16px 48px', borderBottom: '1px solid #1A1A1A', display: 'flex', gap: isMobile ? '20px' : '32px', overflowX: 'auto' }}>
       <span style={{ fontSize: '12px', color: currentPage === 'studios' ? colors.red : colors.gray, letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap' }} onClick={() => goTo('studios')}>STUDIOS</span>
       <span style={{ fontSize: '12px', color: ['production', 'drone'].includes(currentPage) ? colors.red : colors.gray, letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap' }} onClick={() => goTo('production')}>PRODUCTION</span>
       <span style={{ fontSize: '12px', color: currentPage === 'connect' ? colors.red : colors.gray, letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap' }} onClick={() => goTo('connect')}>CONNECT</span>
@@ -1377,7 +1381,7 @@ export default function App() {
   );
 
   const Footer = () => (
-    <footer style={{ padding: isMobile ? '40px 20px' : '48px', borderTop: '1px solid #1A1A1A' }}>
+    <footer style={{ position: 'relative', zIndex: 2, backgroundColor: 'rgba(0,0,0,0.8)', padding: isMobile ? '40px 20px' : '48px', borderTop: '1px solid #1A1A1A' }}>
       <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', gap: isMobile ? '40px' : '0' }}>
         <div>
           <p style={{ fontSize: '20px', fontWeight: '700', marginBottom: '16px', cursor: 'pointer' }} onClick={() => goTo('home')}>BASE NYC</p>
@@ -1422,11 +1426,12 @@ export default function App() {
 
   const HomePage = () => (
     <>
+      <GlobeAnimation />
       <motion.section 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        style={{ position: 'relative', minHeight: isMobile ? '70vh' : '80vh', display: 'flex', alignItems: 'center' }}
+        style={{ position: 'relative', zIndex: 2, minHeight: isMobile ? '70vh' : '80vh', display: 'flex', alignItems: 'center' }}
       >
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: colors.midGray, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
           <video autoPlay muted loop playsInline style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', minWidth: '100%', minHeight: '100%', objectFit: 'cover' }}>
@@ -1457,7 +1462,7 @@ export default function App() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        style={{ padding: isMobile ? '60px 20px' : '80px 48px' }}
+        style={{ position: 'relative', zIndex: 2, background: 'rgba(0,0,0,0.8)', padding: isMobile ? '60px 20px' : '80px 48px' }}
       >
         <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>WHO WE SERVE</p>
         <h2 style={{ fontSize: isMobile ? '28px' : '36px', fontWeight: '700', marginBottom: isMobile ? '32px' : '48px' }}>Built for how you work.</h2>
@@ -1494,7 +1499,7 @@ export default function App() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        style={{ padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}
+        style={{position: 'relative', zIndex: 2, backgroundColor: 'rgba(0,0,0,0.8)', padding: isMobile ? '60px 20px' : '80px 48px' }}
       >
         <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>WHAT WE OFFER</p>
         <h2 style={{ fontSize: isMobile ? '28px' : '36px', fontWeight: '700', marginBottom: isMobile ? '32px' : '48px' }}>One location. Complete capability.</h2>
@@ -1532,7 +1537,7 @@ export default function App() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        style={{ padding: isMobile ? '60px 20px' : '80px 48px' }}
+        style={{ position: 'relative', zIndex: 2, backgroundColor: 'rgba(0,0,0,0.8)',padding: isMobile ? '60px 20px' : '80px 48px' }}
       >
         <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', marginBottom: isMobile ? '32px' : '48px', gap: '16px' }}>
           <div>
@@ -1575,7 +1580,7 @@ export default function App() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="animate-fade-in" 
-        style={{ padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}
+        style={{ position: 'relative', zIndex: 2, backgroundColor: 'rgba(0,0,0,0.8)', padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}
       >
         <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: '24px' }}>
           <div>
@@ -1592,7 +1597,7 @@ export default function App() {
     <>
       <Breadcrumbs />
       <HeroSection tag="ABOUT BASE" title="We built what we wished existed." subtitle="Base started with a simple frustration: why does every production require rebuilding the supply chain from scratch?" heroImage="Facility Exterior" />
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 48px' }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '60px 20px' : '80px 48px' }}>
         <p className="animate-fade-in-up" style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>LEADERSHIP</p>
         <h2 className="animate-fade-in-up" style={{ fontSize: isMobile ? '24px' : '32px', fontWeight: '700', marginBottom: isMobile ? '32px' : '48px', animationDelay: '0.1s' }}>The team behind Base</h2>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: '24px' }}>
@@ -1617,7 +1622,7 @@ export default function App() {
           ))}
         </div>
       </section>
-      <section className="animate-fade-in" style={{ padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
+      <section className="animate-fade-in" style={{ position: 'relative', zIndex: 2, padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
         <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: '24px' }}>
           <div>
             <h2 style={{ fontSize: isMobile ? '28px' : '36px', fontWeight: '700', marginBottom: '8px', color: '#fff' }}>Come see it for yourself.</h2>
@@ -1662,7 +1667,7 @@ export default function App() {
         </div>
       )}
       <ClientLogoMarquee />
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}>
         <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>AMENITIES</p>
         <h2 style={{ fontSize: isMobile ? '24px' : '32px', fontWeight: '700', marginBottom: isMobile ? '32px' : '48px' }}>No nickel-and-diming.</h2>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: '2px' }}>
@@ -1674,7 +1679,7 @@ export default function App() {
           ))}
         </div>
       </section>
-      <section style={{ padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
         <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: '24px' }}>
           <div>
             <h2 style={{ fontSize: isMobile ? '28px' : '36px', fontWeight: '700', marginBottom: '8px', color: '#fff' }}>Ready to book?</h2>
@@ -1692,7 +1697,7 @@ export default function App() {
       <Breadcrumbs />
       <HeroSection tag="BASE PRODUCTION SERVICES" title="From concept to delivery." subtitle="Full-service production support. Pre-production, production, post-production, and fabrication." buttonText="START A PROJECT" buttonAction={() => goTo('contact')} heroImage="Production in Progress" />
       <ClientLogoMarquee />
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 48px' }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '60px 20px' : '80px 48px' }}>
         <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>OUR SERVICES</p>
         <h2 style={{ fontSize: isMobile ? '24px' : '32px', fontWeight: '700', marginBottom: isMobile ? '32px' : '48px' }}>Everything you need, under one roof.</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
@@ -1737,7 +1742,7 @@ export default function App() {
           ))}
         </div>
       </section>
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}>
         <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'flex-end', marginBottom: '32px', gap: '24px' }}>
           <div>
             <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>RECENT WORK</p>
@@ -1768,7 +1773,7 @@ export default function App() {
           ))}
         </div>
       </section>
-      <section style={{ padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
         <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: '24px' }}>
           <div>
             <h2 style={{ fontSize: isMobile ? '28px' : '36px', fontWeight: '700', marginBottom: '8px', color: '#fff' }}>Have a project in mind?</h2>
@@ -1785,7 +1790,7 @@ export default function App() {
       <SubNav />
       <Breadcrumbs />
       <HeroSection tag="DRONE & AERIAL CINEMATOGRAPHY" title="Elevated perspectives for every production." subtitle="FAA Part 107 certified pilots, professional-grade equipment, and creative expertise." buttonText="GET A QUOTE" buttonAction={() => goTo('contact')} heroImage="Aerial Drone Shot" />
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 48px' }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '60px 20px' : '80px 48px' }}>
         <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>CAPABILITIES</p>
         <h2 style={{ fontSize: isMobile ? '24px' : '32px', fontWeight: '700', marginBottom: isMobile ? '32px' : '48px' }}>Professional aerial services.</h2>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: '2px' }}>
@@ -1797,7 +1802,7 @@ export default function App() {
           ))}
         </div>
       </section>
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}>
         <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'flex-end', marginBottom: '32px', gap: '24px' }}>
           <div>
             <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>AERIAL PORTFOLIO</p>
@@ -1828,7 +1833,7 @@ export default function App() {
           ))}
         </div>
       </section>
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 48px' }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '60px 20px' : '80px 48px' }}>
         <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>EQUIPMENT</p>
         <h2 style={{ fontSize: isMobile ? '24px' : '32px', fontWeight: '700', marginBottom: isMobile ? '32px' : '48px' }}>Professional-grade gear.</h2>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '24px' }}>
@@ -1840,7 +1845,7 @@ export default function App() {
           ))}
         </div>
       </section>
-      <section style={{ padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
         <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: '24px' }}>
           <div>
             <h2 style={{ fontSize: isMobile ? '28px' : '36px', fontWeight: '700', marginBottom: '8px', color: '#fff' }}>Ready to fly?</h2>
@@ -1857,7 +1862,7 @@ export default function App() {
       <SubNav />
       <Breadcrumbs />
       <HeroSection tag="BASE CONNECT" title="Work. Create. Connect." subtitle="Physical workspace for creatives and access to NYC's premier network of vetted creative professionals." heroImage="Coworking Space" />
-      <section style={{ padding: isMobile ? '0 20px 60px' : '0 48px 80px' }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '0 20px 60px' : '0 48px 80px' }}>
         <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>WORKSPACE</p>
         <h2 style={{ fontSize: isMobile ? '24px' : '32px', fontWeight: '700', marginBottom: '24px' }}>Your home base in NYC.</h2>
         <p style={{ fontSize: '16px', color: colors.gray, lineHeight: '1.7', marginBottom: isMobile ? '32px' : '48px', maxWidth: '700px' }}>More than just a desk—it's your creative headquarters in Chinatown. Work alongside fellow creatives, access professional amenities, and be part of a community that understands production life.</p>
@@ -1886,7 +1891,7 @@ export default function App() {
           </div>
         </div>
       </section>
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}>
         <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>TALENT NETWORK</p>
         <h2 style={{ fontSize: isMobile ? '24px' : '32px', fontWeight: '700', marginBottom: '24px' }}>NYC's vetted creative professionals.</h2>
         <p style={{ fontSize: '16px', color: colors.gray, lineHeight: '1.7', marginBottom: isMobile ? '32px' : '48px', maxWidth: '700px' }}>Access our curated network of photographers, videographers, directors, producers, editors, and more. Every member is vetted for quality and professionalism.</p>
@@ -1903,7 +1908,7 @@ export default function App() {
   const BlogPage = () => (
     <>
       <Breadcrumbs />
-      <section style={{ padding: isMobile ? '60px 20px 32px' : '80px 48px 40px' }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '60px 20px 32px' : '80px 48px 40px' }}>
         <h1 className="animate-fade-in-up" style={{ fontSize: isMobile ? '36px' : '56px', fontWeight: '700', margin: '0 0 16px 0' }}>The Dailies</h1>
         <p className="animate-fade-in-up" style={{ fontSize: isMobile ? '16px' : '18px', color: colors.gray, animationDelay: '0.1s' }}>Industry news, NYC culture, and creator spotlights.</p>
       </section>
@@ -1926,7 +1931,7 @@ export default function App() {
           >{c}</span>
         ))}
       </section>
-      <section style={{ padding: isMobile ? '0 20px 60px' : '0 48px 80px' }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '0 20px 60px' : '0 48px 80px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)', gap: '24px' }}>
           {blogPosts.filter(p => activeFilter === 'ALL' || p.category === activeFilter).map((p, i) => (
             <article 
@@ -2126,6 +2131,8 @@ export default function App() {
         {/* Related Articles */}
         {allRelated.length > 0 && (
           <section style={{ 
+            position: 'relative',
+            zIndex: 2,
             padding: isMobile ? '60px 20px' : '80px 48px', 
             backgroundColor: colors.darkGray 
           }}>
@@ -2164,7 +2171,7 @@ export default function App() {
         )}
 
         {/* Newsletter CTA */}
-        <section style={{ padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
+        <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
           <div style={{ 
             display: 'flex', 
             flexDirection: isMobile ? 'column' : 'row', 
@@ -2549,7 +2556,7 @@ export default function App() {
     return (
       <>
         <Breadcrumbs />
-        <section style={{ padding: isMobile ? '60px 20px' : '80px 48px', maxWidth: '800px' }}>
+        <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '60px 20px' : '80px 48px', maxWidth: '800px' }}>
           <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '24px' }}>JOIN BASE CONNECT</p>
           <h1 style={{ fontSize: isMobile ? '32px' : '44px', fontWeight: '700', marginBottom: '24px' }}>Membership Application</h1>
           <p style={{ fontSize: '16px', color: colors.gray, lineHeight: '1.7', marginBottom: '48px' }}>Base Connect is a curated network. All applications are reviewed by our team to ensure quality and fit.</p>
@@ -2682,7 +2689,7 @@ export default function App() {
       <Breadcrumbs />
       <HeroSection tag={tag} title={title} subtitle={subtitle} buttonText="GET STARTED" buttonAction={() => goTo('contact')} heroImage={heroImage} />
       <ClientLogoMarquee />
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '60px 20px' : '80px 48px', backgroundColor: colors.darkGray }}>
         <p style={{ fontSize: '11px', letterSpacing: '3px', color: colors.red, marginBottom: '16px' }}>SOLUTIONS</p>
         <h2 style={{ fontSize: isMobile ? '28px' : '36px', fontWeight: '700', marginBottom: isMobile ? '32px' : '48px' }}>How Base works for you</h2>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '2px' }}>
@@ -2705,7 +2712,7 @@ export default function App() {
           ))}
         </div>
       </section>
-      <section style={{ padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: isMobile ? '48px 20px' : '80px 48px', background: redGradient }}>
         <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: '24px' }}>
           <div>
             <h2 style={{ fontSize: isMobile ? '28px' : '36px', fontWeight: '700', marginBottom: '8px', color: '#fff' }}>{ctaTitle}</h2>
